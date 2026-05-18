@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FieldMedic launcher icon foreground: white medical cross. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <!-- Medical cross — centered, generous padding for adaptive-icon safe zone -->
+  <path
+      android:fillColor="#FFFFFF"
+      android:pathData="M46,32 L62,32 L62,46 L76,46 L76,62 L62,62 L62,76 L46,76 L46,62 L32,62 L32,46 L46,46 Z"/>
+</vector>

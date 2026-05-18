@@ -1,0 +1,100 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains / Android Studio
+.idea/
+.gradle/
+local.properties
+*.iml
+.kotlin/
+
+# Gradle build output
+**/build/
+gallery/Android/src/**/build/
+gallery/Android/src/.gradle/
+
+# APKs and intermediate Android outputs (release builds get attached to GitHub Releases instead)
+*.apk
+*.aab
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Kotlin
+*.kotlin_module
+
+# Python venvs / training outputs (HF / Drive hold the artifacts)
+unsloth/.venv/
+unsloth/__pycache__/
+unsloth/train_output/
+unsloth/fieldmedic-gemma-4-e2b-lora/
+unsloth/fieldmedic-gemma-4-e2b-merged/
+unsloth/wandb/
+*.pyc
+*.pyo
+
+# whisper.cpp build artifacts (vendored source is fine, build outputs are not)
+whisper.cpp/build/
+whisper.cpp/models/*.bin
+!whisper.cpp/models/.gitkeep
+# Nested build artifacts from whisper.cpp/examples/whisper.android
+whisper.cpp/examples/whisper.android/lib/.cxx/
+whisper.cpp/examples/whisper.android/lib/build/
+whisper.cpp/examples/whisper.android/app/build/
+whisper.cpp/examples/whisper.android.java/
+**/.cxx/
+
+# Downloaded/converted models that live outside the APK (too big for GitHub).
+# These are recreated from HuggingFace / Drive on demand.
+models/
+**/*.litertlm
+
+# Generated demo screen recordings (we'll attach the final demo video as a release asset)
+*.mov
+*.mp4
+!screenshots/*.gif
+
+# Large model files — don't commit these. They live in:
+#  - APK assets (Whisper tiny, Piper amy-low) — built at compile time
+#  - Hugging Face (Gemma 4 E2B LoRA, downloaded at runtime)
+*.gguf
+*.litertlm
+*.safetensors
+*.onnx
+*.bin
+*.pt
+*.pth
+!gallery/Android/src/app/src/main/assets/piper/en_US-amy-low.onnx
+!gallery/Android/src/app/src/main/assets/piper/en_US-amy-low.onnx.json
+!gallery/Android/src/app/src/main/assets/ggml-tiny.bin
+
+# Screenshots (small, fine to commit) — keep
+# screenshots/
+
+# Local Kaggle / Colab artifacts
+kaggle/
+*.kaggle/
+.colab/
+
+# IDE-specific
+.vscode/
+.cursor/
+
+# Secrets — NEVER commit
+.env
+.env.local
+huggingface_token.txt
+secrets.json
+google-services.json
+
+# Debug
+*.log
+*.dump
+.tombstones/
+
+# Auto-memory files (personal/internal — never commit)
+MEMORY.md
+user_profile.md
+project_gemma4_hackathon.md

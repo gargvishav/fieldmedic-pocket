@@ -1,0 +1,107 @@
+[
+  {
+    "name": "report_triage",
+    "description": "Give first-aid guidance for a non-life-threatening injury",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": ["RED", "YELLOW", "GREEN"],
+          "description": "Urgency classification"
+        },
+        "headline": {
+          "type": "string",
+          "maxLength": 80,
+          "description": "One short sentence describing the situation in plain language"
+        },
+        "immediate_steps": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 3,
+          "maxItems": 5,
+          "description": "Each step 15 words or fewer, imperative, in order"
+        },
+        "do_not": {
+          "type": "array",
+          "items": {"type": "string"},
+          "maxItems": 3,
+          "description": "Critical anti-actions — what would make it worse"
+        },
+        "watch_for": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1,
+          "maxItems": 3,
+          "description": "Escalation triggers — 'If X happens, seek help / call ambulance'"
+        },
+        "handoff_summary": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Factual one-paragraph record for a paramedic or family member, no opinions"
+        }
+      },
+      "required": ["severity", "headline", "immediate_steps", "watch_for", "handoff_summary"]
+    }
+  },
+  {
+    "name": "escalate_emergency",
+    "description": "The situation is life-threatening RIGHT NOW",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "description": "Why this is critical, plain language"
+        },
+        "single_action": {
+          "type": "string",
+          "description": "The ONE thing to do this second"
+        },
+        "while_waiting": {
+          "type": "array",
+          "items": {"type": "string"},
+          "maxItems": 3,
+          "description": "Supportive actions while help comes"
+        }
+      },
+      "required": ["reason", "single_action"]
+    }
+  },
+  {
+    "name": "request_retake",
+    "description": "Photo or information is insufficient",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "issue": {
+          "type": "string",
+          "enum": ["blur", "distance", "lighting", "not_visible", "unclear"]
+        },
+        "instruction": {
+          "type": "string",
+          "description": "Plain-language guidance for the retake"
+        }
+      },
+      "required": ["issue", "instruction"]
+    }
+  },
+  {
+    "name": "refuse_out_of_scope",
+    "description": "Request is not a first-aid scenario",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": ["diagnosis", "medication", "mental_health", "non_human", "food_safety", "symptom_without_injury", "other"]
+        },
+        "redirect": {
+          "type": "string",
+          "description": "Where the user should go instead"
+        }
+      },
+      "required": ["category", "redirect"]
+    }
+  }
+]
